@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head></head>
+    <body>
+    <div sec:authorize="isAuthenticated()">
+        <a th:href="@{http://localhost:3000/logout}">
+            <span >Logout</span>
+        </a>
+        <div sec:authorize="hasRole('ROLE_PROF')">
+        <!--<div th:if="${#authentication.getPrincipal().authorities == 'ROLE_PROF'}"> -->
+            <a th:href="@{http://localhost:3000/profesores}">
+                <span >Profesores</span>
+            </a>
+            <a th:href="@{http://localhost:3000/todos}">
+                <span >Todos</span>
+            </a>
+        </div>
+        <div sec:authorize="hasRole('ROLE_ALUM')">
+        <!--<div th:if="${#authentication.getPrincipal().authorities == 'ROLE_ALUM'}"> -->
+            <a th:href="@{http://localhost:3000/alumnos}">
+                <span >Alumnos</span>
+            </a>
+            <a th:href="@{http://localhost:3000/todos}">
+                <span >Todos</span>
+            </a>
+        </div>
+    </div>
+    <div sec:authorize="isAnonymous">
+        <a th:href="@{http://localhost:3000/login}">
+            <span >Login</span>
+        </a>
+    </div>
+    </body>
+
+</html>
